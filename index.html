@@ -5,22 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HHNA | Hill & Harbour Neighborhood Association</title>
     <style>
+        /* Modern CSS Variables for consistent theming */
+        :root {
+            --bg-color: #f4f4f5;
+            --surface-color: #ffffff;
+            --text-primary: #18181b;
+            --text-secondary: #52525b;
+            --accent-color: #0f766e; /* Sleek Teal */
+            --accent-hover: #115e59;
+            --border-color: #e4e4e7;
+            --radius-md: 12px;
+            --radius-lg: 20px;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.03);
+            --transition: all 0.2s ease-in-out;
+        }
+
         /* Foundational Styles */
         body {
-            font-family: 'Helvetica Neue', Arial, sans-serif;
+            /* Uses native system fonts for a slick, app-like feel */
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             line-height: 1.6;
             margin: 0;
             padding: 0;
-            color: #333;
-            background-color: #fcfcfc;
+            color: var(--text-primary);
+            background-color: var(--bg-color);
+            font-size: 16px;
         }
 
-        /* Header & Navigation */
+        /* Glassmorphism Sticky Header */
         header {
-            background: #ffffff;
-            border-bottom: 3px solid #005f73;
-            padding-top: 20px;
-            min-height: 70px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 15px 0;
         }
 
         header .header-content {
@@ -33,190 +55,298 @@
         }
 
         header .logo img {
-            max-width: 200px;
+            max-width: 180px;
             height: auto;
+            display: block;
         }
 
         nav ul {
             padding: 0;
             list-style: none;
             display: flex;
-            gap: 20px;
+            align-items: center;
+            gap: 24px;
+            margin: 0;
         }
 
         nav ul li a {
-            color: #333;
+            color: var(--text-secondary);
             text-decoration: none;
-            text-transform: uppercase;
-            font-size: 14px;
-            font-weight: bold;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: var(--transition);
         }
 
         nav ul li a:hover {
-            color: #005f73;
+            color: var(--text-primary);
         }
 
-        /* Banner Styles */
+        /* High-contrast CTA Button in Navigation */
+        nav ul li a.btn-primary {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        nav ul li a.btn-primary:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-1px);
+        }
+
+        /* Hero Banner */
         .hero-banner {
             width: 90%;
             max-width: 1200px;
-            margin: 30px auto 0 auto;
-            text-align: center;
+            margin: 40px auto 0 auto;
         }
 
         .hero-banner img {
             width: 100%;
             height: auto;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
             display: block;
         }
 
-        /* 2-Column Layout Structure */
+        /* Modern Grid Layout */
         .main-container {
-            display: flex;
-            gap: 40px;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
             width: 90%;
             max-width: 1200px;
             margin: 40px auto;
         }
 
-        .content-left {
-            flex: 2; /* Takes up roughly 66% of the width */
+        /* Typography */
+        h1, h2, h3 {
+            color: var(--text-primary);
+            margin-top: 0;
+            letter-spacing: -0.02em;
+        }
+
+        h2 {
+            font-size: 1.75rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-top: 30px;
+        }
+
+        p {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+        }
+
+        ul, ol {
+            color: var(--text-secondary);
+        }
+
+        /* Card UI System */
+        .card {
+            background: var(--surface-color);
+            padding: 40px;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 30px;
         }
 
         .sidebar-right {
-            flex: 1; /* Takes up roughly 33% of the width */
-            background: #f4f6f8;
-            padding: 25px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            height: fit-content;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
         }
 
-        /* Responsive stack for mobile */
-        @media (max-width: 800px) {
-            .main-container {
-                flex-direction: column;
-            }
-            header .header-content {
-                flex-direction: column;
-            }
-            nav ul {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-        }
-
-        /* Typography & Components */
-        h1, h2, h3 {
-            color: #005f73;
-            margin-top: 0;
-        }
-
-        .content-section {
-            background: #ffffff;
+        .sidebar-card {
+            background: var(--surface-color);
             padding: 30px;
-            margin-bottom: 30px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-sm);
         }
 
-        .sidebar-right h2 {
-            font-size: 1.4rem;
-            border-bottom: 2px solid #005f73;
-            padding-bottom: 10px;
-            margin-bottom: 15px;
+        .sidebar-card h2 {
+            font-size: 1.3rem;
+            border-bottom: 2px solid var(--bg-color);
+            padding-bottom: 15px;
+            margin-bottom: 20px;
         }
 
-        .sidebar-right ul {
-            padding-left: 20px;
-            margin-bottom: 25px;
+        .sidebar-card ul {
+            padding-left: 0;
+            list-style: none;
         }
 
-        /* Collapsible Bylaws Styles */
+        .sidebar-card ul li {
+            padding: 10px 0;
+            border-bottom: 1px solid var(--bg-color);
+            color: var(--text-primary);
+        }
+
+        .sidebar-card ul li:last-child {
+            border-bottom: none;
+        }
+
+        /* Slick Accordion for Bylaws */
         details {
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            background: #fafafa;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            background: var(--surface-color);
             margin-top: 20px;
+            overflow: hidden;
+            transition: var(--transition);
         }
 
         summary {
             font-size: 1.1rem;
-            font-weight: bold;
-            color: #005f73;
+            font-weight: 600;
+            color: var(--text-primary);
             cursor: pointer;
-            padding: 15px;
-            background: #f0f4f8;
-            border-radius: 5px;
+            padding: 20px;
+            background: var(--bg-color);
             outline: none;
-            transition: background 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
 
-        summary:hover {
-            background: #e1e9f0;
+        summary::-webkit-details-marker {
+            display: none; /* Hide default arrow */
+        }
+
+        summary::after {
+            content: '+';
+            font-size: 1.5rem;
+            font-weight: 300;
+            color: var(--text-secondary);
+            transition: transform 0.3s ease;
+        }
+
+        details[open] summary::after {
+            content: '−'; /* Change to minus when open */
         }
 
         details > article {
-            padding: 20px;
-            background: #fff;
-            border-top: 1px solid #ddd;
+            padding: 30px;
+            background: var(--surface-color);
+            border-top: 1px solid var(--border-color);
         }
 
-        /* Footer */
+        /* Footer & Forms */
         footer {
-            background: #222;
-            color: #fff;
-            text-align: center;
-            padding: 40px 20px;
-            margin-top: 40px;
+            background: #18181b;
+            color: #d4d4d8;
+            padding: 60px 20px;
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 40px;
+            max-width: 1200px;
+            margin: auto;
+            width: 90%;
+        }
+
+        footer h3 {
+            color: white;
         }
 
         footer a {
-            color: #00b4d8;
+            color: #a1a1aa;
             text-decoration: none;
+            transition: var(--transition);
+        }
+
+        footer a:hover {
+            color: white;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
         }
 
         .footer-forms {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 40px;
-            max-width: 1000px;
-            margin: 30px auto 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
         }
 
         .form-group {
-            margin-bottom: 15px;
-            text-align: left;
+            margin-bottom: 20px;
         }
 
         .form-group label {
             display: block;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #a1a1aa;
         }
 
         .form-group input, .form-group textarea {
             width: 100%;
-            padding: 10px;
+            padding: 12px 16px;
+            background: #27272a;
+            border: 1px solid #3f3f46;
+            color: white;
+            border-radius: var(--radius-md);
             box-sizing: border-box;
-            border: none;
-            border-radius: 4px;
+            font-family: inherit;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.2);
         }
 
         button[type="submit"] {
-            background: #005f73;
+            background: var(--accent-color);
             color: white;
             border: none;
-            padding: 10px 20px;
+            padding: 12px 24px;
             cursor: pointer;
-            border-radius: 4px;
-            font-weight: bold;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            width: 100%;
+            transition: var(--transition);
         }
 
         button[type="submit"]:hover {
-            background: #0a9396;
+            background: var(--accent-hover);
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 900px) {
+            .main-container {
+                grid-template-columns: 1fr;
+            }
+            .footer-content, .footer-forms {
+                grid-template-columns: 1fr;
+            }
+            header .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+            }
         }
     </style>
 </head>
@@ -226,7 +356,7 @@
         <div class="header-content">
             <div class="logo">
                 <a href="index.html">
-                    <img src="./images/HHNA_Logo.png" alt="HHNA Logo">
+                    <img src="https://web.archive.org/web/20250214215232im_/https://eghhna.org/wp-content/uploads/2021/03/HHNA_Logo.png" alt="HHNA Logo">
                 </a>
             </div>
             <nav>
@@ -235,7 +365,7 @@
                     <li><a href="meetings.html">Meetings</a></li>
                     <li><a href="join.html">Join Us</a></li>
                     <li><a href="shop.html">Shop</a></li>
-                    <li><a href="https://www.paypal.com/donate/?hosted_button_id=WBS3TJK3QYNTN" target="_blank">Donate/Pay</a></li>
+                    <li><a href="https://www.paypal.com/donate/?hosted_button_id=WBS3TJK3QYNTN" target="_blank" class="btn-primary">Donate / Pay Dues</a></li>
                 </ul>
             </nav>
         </div>
@@ -246,11 +376,11 @@
     </div>
 
     <main class="main-container">
-
         <div class="content-left">
-            <section id="about" class="content-section">
+            <section id="about" class="card">
                 <h2>About Us</h2>
-                <p><strong>The Hill & Harbour Neighborhood Association (HHNA)</strong> is a volunteer organization created to promote public safety and civic awareness, to connect neighbors, as well as to organize community events and beautification projects in the historic Hill & Harbour District of East Greenwich, RI. The HHNA as an organization shall remain neutral on town initiatives and capital projects, except as they pertain to public safety.</p>
+                <p><strong>The Hill & Harbour Neighborhood Association (HHNA)</strong> is a volunteer organization created to promote public safety and civic awareness, to connect neighbors, as well as to organize community events and beautification projects in the historic Hill & Harbour District of East Greenwich, RI.</p>
+                <p>The HHNA as an organization shall remain neutral on town initiatives and capital projects, except as they pertain to public safety.</p>
 
                 <h3>Goals</h3>
                 <ul>
@@ -263,15 +393,15 @@
                 <p>To maintain and enhance the historic quality of our neighborhood while encouraging friendly communication amongst our neighbors and expressing interest and opinions of all to our local government officials.</p>
 
                 <h3>Values</h3>
-                <p>Trust | Respect | Communication</p>
+                <p>Trust • Respect • Communication</p>
             </section>
 
-            <section id="bylaws" class="content-section">
+            <section id="bylaws" class="card">
                 <h2>Association Bylaws</h2>
                 <p>Review the governing rules and structure of the Hill & Harbour Neighborhood Association below.</p>
 
                 <details>
-                    <summary> Full HHNA Bylaws</summary>
+                    <summary>View Complete HHNA Bylaws</summary>
                     <article>
                         <h3>ARTICLE I. MEMBERSHIP</h3>
                         <ol>
@@ -297,83 +427,57 @@
                             <li>The Chairs (s) shall have the power to appoint committees as necessary to implement the purposes of the charter.</li>
                             <li>The Chairs (s) shall be an ex-officio member of all committees.</li>
                         </ol>
-
-                        <h3>ARTICLE IV. MEETINGS</h3>
-                        <ol>
-                            <li>Meetings are held monthly or bi-monthly at the discretion of the board.</li>
-                            <li>Voting Members shall have the privilege of petitioning officers for a special meeting at any time. Three out of five officers must approve the special meeting.</li>
-                            <li>The Voting Members present at the approved special meeting shall constitute a quorum.</li>
-                            <li>At least a ten day notice shall be provided in advance of any association meeting. Every effort will be made to notify all interested parties and members of the Association of upcoming meetings either by direct mailing, pamphlets, newsletters, or announcements at regularly scheduled meetings.</li>
-                        </ol>
-
-                        <h3>ARTICLE V. NOMINATION, ELECTIONS, ANNUAL REPORTS AND INSTALLATION OF OFFICERS</h3>
-                        <ol>
-                            <li>Nominations of officers shall be made from the floor at the annual meeting, or a slate presented from a nominating committee would also be acceptable.</li>
-                            <li>Election of officers shall be held on the same day as the nominations.</li>
-                            <li>Upon installation of the officers whose terms begin at the close of the Annual Meeting, all documents, records, and any materials pertaining to the duties of the office as designated in the bylaws which are in the possession of the outgoing officers shall be submitted to the newly elected counterpart within 30 days of the installation.</li>
-                            <li>Any vacancies occurring during the year of any Officer shall be filled by appointment of the remaining officers until a special election can be held as soon as reasonably possible.</li>
-                            <li>Any officer may be removed from office for cause by a majority vote of the Voting Members.</li>
-                        </ol>
-
-                        <h3>ARTICLE VI. FISCAL RESPONSIBILITY</h3>
-                        <ol>
-                            <li>Expenditure of funds of the association may not be made without the signatures of at least one (1) of the Co-Chairs and the Treasurer.</li>
-                            <li>Financial records and funds of the association shall be audited at least once a year by a committee of at least two (2) officers other than the Treasurer.</li>
-                        </ol>
-
-                        <h3>ARTICLE VII. AMENDMENT OF BYLAWS</h3>
-                        <ol>
-                            <li>These bylaws may be amended by a majority vote.</li>
-                            <li>Proposed amendments shall be sent to all members at least ten working days in advance of the meeting where action is to be taken or shall be read at the presiding meeting.</li>
-                        </ol>
-
-                        <h3>ARTICLE VIII. GENERAL</h3>
-                        <ol>
-                            <li>If any part of these Bylaws or the application thereof is hereafter held invalid or unenforceable, the remainder shall not be affected thereby, and only the affected portions are declared eliminated.</li>
-                            <li>No officer, representative, spokesperson or member shall have any financial liability of the association and shall be indemnified from any actions of the Association.</li>
-                        </ol>
                     </article>
                 </details>
             </section>
         </div>
 
         <div class="sidebar-right">
-            <h2>2025 Meetings</h2>
-            <p>Meetings will be held on the second Tuesday of every other month at 7pm at the EG Police Station unless otherwise noted.</p>
-            <ul>
-                <li>January 14</li>
-                <li>March 11</li>
-                <li>May 13</li>
-                <li>July 8</li>
-                <li>August 12 <strong>(Annual Meeting)</strong></li>
-                <li>October 14</li>
-                <li>December 9</li>
-            </ul>
 
-            <h3>2026 HHNA Events</h3>
-            <ul>
-                <li><strong>Yard Sale:</strong> May 16, 2026</li>
-                <li><strong>Block Party:</strong> TBD</li>
-                <li><strong>Halloween:</strong> October 31, 2026</li>
-            </ul>
-
+            <div class="sidebar-card">
+                <h2>2025 Meetings</h2>
+                <p style="font-size: 0.95rem;">Meetings are held on the second Tuesday of every other month at 7pm at the EG Police Station unless otherwise noted.</p>
+                <ul>
+                    <li><strong>January 14</strong></li>
+                    <li><strong>March 11</strong></li>
+                    <li><strong>May 13</strong></li>
+                    <li><strong>July 8</strong></li>
+                    <li><strong>August 12</strong> (Annual Meeting)</li>
+                    <li><strong>October 14</strong></li>
+                    <li><strong>December 9</strong></li>
+                </ul>
             </div>
+
+            <div class="sidebar-card">
+                <h2>2026 Events</h2>
+                <ul>
+                    <li><strong>Yard Sale</strong><br><span style="font-size: 0.85rem; color: var(--text-secondary);">May 16, 2026</span></li>
+                    <li><strong>Block Party</strong><br><span style="font-size: 0.85rem; color: var(--text-secondary);">Date TBD</span></li>
+                    <li><strong>Halloween</strong><br><span style="font-size: 0.85rem; color: var(--text-secondary);">October 31, 2026</span></li>
+                </ul>
+            </div>
+
+        </div>
     </main>
 
     <footer>
-        <div class="container">
-            <p><strong>Hill & Harbour Neighborhood Association</strong><br>
-            P.O. Box 1443<br>
-            East Greenwich, RI 02818</p>
+        <div class="footer-content">
+            <div class="footer-info">
+                <img src="./images/HHNA_Logo.png" alt="HHNA Logo" style="max-width: 150px; filter: grayscale(1) brightness(2); margin-bottom: 20px;">
+                <p><strong>Hill & Harbour Neighborhood Association</strong><br>
+                P.O. Box 1443<br>
+                East Greenwich, RI 02818</p>
 
-            <p>
-                <a href="https://www.facebook.com/EGHHNA" target="_blank">Facebook</a> |
-                <a href="https://twitter.com/historiceg_hhna" target="_blank">X (Twitter)</a> |
-                <a href="https://www.instagram.com/eghhna/" target="_blank">Instagram</a>
-            </p>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/EGHHNA" target="_blank">Facebook</a> •
+                    <a href="https://twitter.com/historiceg_hhna" target="_blank">X (Twitter)</a> •
+                    <a href="https://www.instagram.com/eghhna/" target="_blank">Instagram</a>
+                </div>
+                <p style="font-size: 12px; margin-top: 40px; color: #71717a;">&copy; 2026 Hill & Harbour Neighborhood Association.</p>
+            </div>
 
             <div class="footer-forms">
-                <form action="#" method="POST" style="width: 100%; max-width: 400px;">
+                <form action="#" method="POST">
                     <h3>Got a Question?</h3>
                     <div class="form-group">
                         <label for="name">Name</label>
@@ -387,20 +491,18 @@
                         <label for="message">Message</label>
                         <textarea id="message" name="message" rows="3" required></textarea>
                     </div>
-                    <button type="submit">Submit</button>
+                    <button type="submit">Send Message</button>
                 </form>
 
-                <form action="#" method="POST" style="width: 100%; max-width: 400px;">
-                    <h3>Get Our Emails</h3>
+                <form action="#" method="POST">
+                    <h3>Join Our Newsletter</h3>
                     <div class="form-group">
-                        <label for="newsletter-email">Email *</label>
+                        <label for="newsletter-email">Email Address *</label>
                         <input type="email" id="newsletter-email" name="newsletter-email" required>
                     </div>
                     <button type="submit">Subscribe</button>
                 </form>
             </div>
-
-            <p style="font-size: 12px; margin-top: 30px; color: #888;">&copy; 2026 Hill & Harbour Neighborhood Association.</p>
         </div>
     </footer>
 
